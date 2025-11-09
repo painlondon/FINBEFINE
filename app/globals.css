@@ -7,7 +7,8 @@
 
 :root {
   --text: #111111;
-
+  --text-normal: #171717;
+  --primary-800: #193399;
   --font-montserrat: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial;
   --primary: #5279f4;
@@ -77,7 +78,9 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-text-normal: var(--text-normal);
   --color-foreground: var(--foreground);
+  --color-primary-800: var(--primary-800);
   --color-primary: var(--primary);
   --color-text: var(--text);
   --font-sans: var(--font-geist-sans);
@@ -148,4 +151,57 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.heroBoxShaddow {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.heroThirdBoxGradient {
+  background:
+  /* vertical fade (top → bottom) */ linear-gradient(
+      180deg,
+      rgba(85, 123, 243, 0) 0%,
+      #557bf3 100%
+    ),
+    /* horizontal fade (left → right) */
+      linear-gradient(90deg, rgba(85, 123, 243, 0) 0%, #557bf3 100%);
+}
+
+/* Rectangle 122 */
+
+.heroThirdBoxFirstGradient {
+  background: linear-gradient(180deg, rgba(85, 123, 243, 0) 0%, #557bf3 100%);
+}
+.heroThirdBoxSecondGradient {
+  background: linear-gradient(78.61deg, #c6d5df 3.53%, #5279f4 92.92%);
+}
+
+.heroFourthBoxGradient {
+  background: linear-gradient(180deg, #ffffff 0%, #5279f4 100%);
+}
+
+.fifthBoxGradient {
+  background: linear-gradient(
+    112.26deg,
+    #557bf3 14.07%,
+    rgba(85, 123, 243, 0) 99.06%
+  );
+}
+
+.heroSixthBoxGradient {
+  background: linear-gradient(
+    112.26deg,
+    rgba(85, 123, 243, 0) 14.07%,
+    #557bf3 99.06%
+  );
+}
+
+.iconShaddow {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.homeSecondSectionBoxShaddow,
+.lightShadow {
+  box-shadow: 0px 0px 10px 0px #00000026;
 }

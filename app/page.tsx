@@ -1,6 +1,14 @@
 import { useTranslations } from "next-intl";
+import { Hero } from "./_components/hero";
+import { SecondSection } from "./_components/secondSection";
+import { ThirdSection } from "./_components/thirdSection";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
-  return <h1>{t("title")}</h1>;
+  return (
+    <div className="flex flex-col py-9">
+      <Hero />
+      <SecondSection />
+      <ThirdSection />
+    </div>
+  );
 }
