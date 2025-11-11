@@ -6,6 +6,7 @@ import { FourthSection } from "./_components/fourthSection";
 import { FifthSection } from "./_components/fifthSection";
 import { SeventhSection } from "./_components/seventhSection";
 import { EigthSection } from "./_components/eighthSection";
+import { NinethSection } from "./_components/nenethSection";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
 
       <SeventhSection />
       <EigthSection />
+      <NinethSection />
     </div>
   );
 }
