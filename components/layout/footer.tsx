@@ -6,8 +6,8 @@ export const Footer = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-[#EDF2F5] ">
-      <div className="w-full py-8 flex max-w-[1440px] px-14 justify-between">
-        <div className="flex w-[707px] flex-col gap-11">
+      <div className="w-full flex-col lg:flex-row py-8 flex max-w-[1440px] px-2 lg:px-14 justify-between">
+        <div className="flex lg:w-[707px] flex-col gap-4 lg:gap-11">
           <div className="flex justify-start items-center gap-1.5">
             <img src="/logo.png" />
             <h3 className="text-xl w-fit font-bold text-center">
@@ -16,7 +16,7 @@ export const Footer = () => {
             </h3>
           </div>
 
-          <div className="flex flex-col gap-3 text-text">
+          <div className="flex flex-col max-w-full gap-3 text-text">
             <p>{t("organizationInfo")}</p>
             <h3 className="text-[#5279F4] font-semibold">
               {t("agreementsAndPolicies")}
@@ -26,7 +26,7 @@ export const Footer = () => {
         </div>
 
         <div className="flex flex-col pt-10 max-w-[550px]">
-          <div className="w-full flex gap-3 justify-end">
+          <div className="w-full flex gap-3 lg:justify-end">
             <PlusIcon />
             <WIcon />
             <SendIcon />

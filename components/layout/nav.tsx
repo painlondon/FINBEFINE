@@ -1,14 +1,12 @@
 "use client";
 
 import { AppConfig as appConfig } from "@/config/main";
-import { AnalyticsIcon } from "@/icons/analytics";
-import { LocationIcon } from "@/icons/location";
-import { useTranslations } from "next-intl";
-import { LinkIcon } from "@/icons/link";
-import { Button } from "../ui/button";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/tailwind";
 import { ListArrow } from "@/icons/arrows";
+import { LinkIcon, MenuIcon, XIcon } from "lucide-react";
+import { cn } from "@/lib/tailwind";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { Button } from "../ui/button";
 
 // nav config
 type NavigationPathProps = {
@@ -19,7 +17,6 @@ type NavigationPathProps = {
 const languages = [
   { code: "en", label: "EN", flag: "/flags/en.png" },
   { code: "ru", label: "RU", flag: "/flags/ru.png" },
-  // Add more languages here
 ];
 
 interface LanguageSwitcherProps {
@@ -50,7 +47,7 @@ export default function LanguageSwitcher({
     <div className="relative inline-block text-left">
       <div
         onClick={() => setOpen(!open)}
-        className="px-3 flex gap-1.5 cursor-pointer justify-center items-end py-2  rounded"
+        className="px-3 flex gap-1.5 cursor-pointer justify-center items-end py-2 rounded"
       >
         <img className="w-5" src={language?.flag} />
         <p className="text-[10px] leading-2 ">
@@ -62,7 +59,7 @@ export default function LanguageSwitcher({
       </div>
 
       {open && (
-        <div className="absolute mt-2 w-32 border rounded shadow bg-white z-10">
+        <div className="absolute mt-2 w-32 border rounded shadow bg-white z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -83,6 +80,7 @@ export default function LanguageSwitcher({
 
 export const Navigation: React.FC<{ local: string }> = ({ local }) => {
   const t = useTranslations("navigation");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const NavigationPaths: NavigationPathProps[] = [
     { titleKey: t("loans"), path: "/loans" },
@@ -101,34 +99,13 @@ export const Navigation: React.FC<{ local: string }> = ({ local }) => {
   };
 
   return (
-    <div className="flex z-20 flex-col gap-8 p-7 max-w-[1440px] w-full">
+    <nav className="flex z-20 flex-col gap-8 p-7 max-w-[1440px] w-full">
       <div className="flex gap-5 items-center justify-between">
-        <div className="flex gap-5 items-center">
-          {/* <div className="flex items-center gap-2">
-            <LocationIcon />
-            <p className="text-[#111111] text-[10px]">{t("moscow")}</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <AnalyticsIcon />
-            <p className="text-[#111111] text-[10px]">{t("exchangeRates")}</p>
-          </div> */}
-          {/* <div className="flex gap-3 items-center">
-            <p className="text-[#111111] text-[10px]">
-              <span className="font-bold">USD</span>
-              <span className="font-medium">88.72</span>
-              <span className="font-medium text-[8px]">+001</span>
-            </p>
-            <p className="text-[#111111] text-[10px]">
-              <span className="font-bold">EUR</span>
-              <span className="font-medium">96.44</span>
-              <span className="font-medium text-[8px]">+012</span>
-            </p>
-          </div> */}
-        </div>
-
+        <div></div>
         <LanguageSwitcher currentLocale={local} />
       </div>
-      <div className="flex justify-between items-center w-full">
+
+      <div className="hidden md:flex justify-between items-center w-full">
         <div className="flex w-fit items-center justify-start gap-14">
           <div className="flex gap-2 items-center">
             <img src="/favicon.svg" />
@@ -147,6 +124,42 @@ export const Navigation: React.FC<{ local: string }> = ({ local }) => {
           <LinkIcon /> {t("login")}
         </Button>
       </div>
-    </div>
+
+      <div className="md:hidden fixed top-0 left-0 w-full bg-white shadow-md flex justify-between items-center px-5 py-3 z-40">
+        <div className="flex gap-2 items-center">
+          <img src="/favicon.svg" className="w-8 h-8" />
+          <h3 className="uppercase text-text text-[20px] font-bold">
+            <span className="text-primary">{appConfig.name.slice(4)}</span>
+            <span>{appConfig.name.slice(4, appConfig.name.length)}</span>
+          </h3>
+        </div>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="p-2 border rounded-md"
+        >
+          {mobileOpen ? (
+            <XIcon className="w-5 h-5" />
+          ) : (
+            <MenuIcon className="w-5 h-5" />
+          )}
+        </button>
+      </div>
+
+      {mobileOpen && (
+        <div className="fixed top-[60px] left-0 w-full bg-white z-30 shadow-lg flex flex-col gap-4 p-5">
+          {NavigationPaths.map((pathInfo) => (
+            <div
+              key={pathInfo.titleKey}
+              className="py-2 border-b text-sm cursor-pointer"
+            >
+              {pathInfo.titleKey}
+            </div>
+          ))}
+          <Button variant="default" className="w-full mt-3">
+            <LinkIcon /> {t("login")}
+          </Button>
+        </div>
+      )}
+    </nav>
   );
 };

@@ -29,9 +29,9 @@ export default async function RootLayout({
         )}
       >
         <NextIntlClientProvider>
-          {/* <Navigation local={currentLocale} /> */}
+          <Navigation local={currentLocale} />
           <div className="relative z-10">{children}</div>
-          {/* <Footer /> */}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
